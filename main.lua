@@ -11,5 +11,6 @@ function love.update(dt)
 end
 
 function love.draw()
+	love.graphics.setLineWidth(3)
 	spider:draw()
 end
