@@ -1,4 +1,5 @@
-local function updateLeg(leg, targetPos)
+local function updateLeg(leg, bodyPos, targetPos)
+	leg.joint1 = bodyPos + leg.offset
 	local diff = targetPos - leg.joint1
 	local dist = (diff):length()
 	local atan = math.atan2(diff.y, diff.x)
@@ -39,7 +40,7 @@ local function drawLeg(self)
 	love.graphics.circle("line", mousePos.x, mousePos.y, 5)
 end
 
-function createLeg(root, bone1Length, bone2Length, flipped)
+function createLeg(offset, bone1Length, bone2Length, flipped)
 	flipped = flipped or false
 
 	return {
@@ -47,9 +48,10 @@ function createLeg(root, bone1Length, bone2Length, flipped)
 		bone2Length = bone2Length,
 		angle1 = 0,
 		angle2 = 0,
-		joint1 = root,
-		joint2 = root + vec2(bone1Length, 0),
-		hand = root + vec2(bone1Length + bone2Length, 0),
+		offset = offset,
+		joint1 = offset,
+		joint2 = offset + vec2(bone1Length, 0),
+		hand = offset + vec2(bone1Length + bone2Length, 0),
 		flipped = flipped,
 		update = updateLeg,
 		draw = drawLeg
