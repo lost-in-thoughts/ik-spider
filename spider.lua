@@ -40,8 +40,8 @@ function createSpider(pos)
 			leg:draw()
 		end
 		love.graphics.setColor(0, 0, 0)
-		love.graphics.circle("fill", self.pos.x + 20, self.pos.y + 10, 10)
-		love.graphics.circle("fill", self.pos.x - 20, self.pos.y + 10, 10)
+		love.graphics.circle("fill", self.pos.x + 15, self.pos.y + 10, 10)
+		love.graphics.circle("fill", self.pos.x - 15, self.pos.y + 10, 10)
 	end
 
 	return spider
