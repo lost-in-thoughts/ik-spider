@@ -7,8 +7,10 @@ local function updateLeg(self, bodyPos)
 	local targetDiff = (targetPos - self.targetPos):length()
 
 	if targetDiff > self.updateDist then
+		local future = targetPos - self.targetPos
 		self.targetPos = targetPos
 		self.targetPos = self.targetPos + (vec2(math.random(), math.random()) * 20 - vec2(10))
+		self.targetPos = self.targetPos + future * .5
 	end
 
 	self.joint1 = bodyPos + self.offset

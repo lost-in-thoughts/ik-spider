@@ -4,14 +4,14 @@ function createSpider(pos)
 	local spider = {
 		pos = pos,
 		legs = {
-			createLeg(vec2(-55, 0), 75, 200, 35, true),
-			createLeg(vec2(-50, 0), 75, 150, 40, true),
-			createLeg(vec2(-35, 0), 75, 150, 50, true),
-			createLeg(vec2(-20, 0), 75, 150, 60, true),
-			createLeg(vec2(20, 0), 75, 150, 65),
-			createLeg(vec2(35, 0), 75, 150, 52),
-			createLeg(vec2(50, 0), 75, 150, 42),
-			createLeg(vec2(55, 0), 75, 200, 36),
+			createLeg(vec2(-55, 0), 75, 200, 45, true),
+			createLeg(vec2(-50, 0), 75, 150, 50, true),
+			createLeg(vec2(-35, 0), 75, 150, 60, true),
+			createLeg(vec2(-20, 0), 75, 150, 80, true),
+			createLeg(vec2(20, 0), 75, 150, 85),
+			createLeg(vec2(35, 0), 75, 150, 62),
+			createLeg(vec2(50, 0), 75, 150, 52),
+			createLeg(vec2(55, 0), 75, 200, 46),
 		},
 	}
 
