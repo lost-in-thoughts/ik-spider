@@ -14,6 +14,13 @@ local function updateLeg(leg, targetPos)
 		leg.angle2 = leg.angle1 + math.pi - math.acos(cosAngle1)
 
 	end
+	
+	if leg.flipped then
+		local diff = leg.angle1 - atan
+		leg.angle1 = atan - diff
+		diff = leg.angle2 - atan
+		leg.angle2 = atan - diff
+	end
 
 	leg.joint2 = leg.joint1 + vec2(math.cos(leg.angle1), math.sin(leg.angle1)) * leg.bone1Length
 	leg.hand = leg.joint2 + vec2(math.cos(leg.angle2), math.sin(leg.angle2)) * leg.bone2Length
@@ -32,7 +39,9 @@ local function drawLeg(self)
 	love.graphics.circle("line", mousePos.x, mousePos.y, 5)
 end
 
-function createLeg(root, bone1Length, bone2Length)
+function createLeg(root, bone1Length, bone2Length, flipped)
+	flipped = flipped or false
+
 	return {
 		bone1Length = bone1Length,
 		bone2Length = bone2Length,
@@ -41,6 +50,7 @@ function createLeg(root, bone1Length, bone2Length)
 		joint1 = root,
 		joint2 = root + vec2(bone1Length, 0),
 		hand = root + vec2(bone1Length + bone2Length, 0),
+		flipped = flipped,
 		update = updateLeg,
 		draw = drawLeg
 	}

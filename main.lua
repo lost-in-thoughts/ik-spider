@@ -2,7 +2,7 @@ require 'vec2'
 require 'spider'
 
 function love.load()
-	spider = createSpider(vec2(100, 100))
+	spider = createSpider(vec2(200, 200))
 end
 
 function love.update()
