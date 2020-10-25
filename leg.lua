@@ -7,14 +7,23 @@ local function updateLeg(self, bodyPos)
 	local targetDiff = (targetPos - self.targetPos):length()
 
 	if targetDiff > self.updateDist then
+		self.currentTargetPos = self.targetPos
 		local future = targetPos - self.targetPos
 		self.targetPos = targetPos
 		self.targetPos = self.targetPos + (vec2(math.random(), math.random()) * 20 - vec2(10))
 		self.targetPos = self.targetPos + future * .5
 	end
 
+	local diff = self.targetPos - self.currentTargetPos
+	local speed = 15
+	if diff:length() < speed then
+		self.currentTargetPos = self.targetPos
+	else
+		self.currentTargetPos = self.currentTargetPos + diff:normalize() * speed
+	end
+
 	self.joint1 = bodyPos + self.offset
-	local diff = self.targetPos - self.joint1
+	local diff = self.currentTargetPos - self.joint1
 	local dist = (diff):length()
 	local atan = math.atan2(diff.y, diff.x)
 
@@ -65,6 +74,7 @@ function createLeg(offset, bone1Length, bone2Length, updateDist, flipped)
 		hand = offset + vec2(bone1Length + bone2Length, 0),
 		flipped = flipped,
 		targetPos = getTargetPos(vec2(), offset),
+		currentTargetPos = vec2(),
 		updateDist = updateDist,
 		update = updateLeg,
 		draw = drawLeg
