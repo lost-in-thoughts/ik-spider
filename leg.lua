@@ -19,7 +19,7 @@ local function updateLeg(leg, targetPos)
 	leg.hand = leg.joint2 + vec2(math.cos(leg.angle2), math.sin(leg.angle2)) * leg.bone2Length
 end
 
-function drawLeg(self)
+local function drawLeg(self)
 	love.graphics.setColor(1.0, 1.0, 1.0)
 	love.graphics.circle("line", self.joint1.x, self.joint1.y, 10)
 	love.graphics.circle("line", self.joint2.x, self.joint2.y, 10)
